@@ -1,22 +1,20 @@
-#include <iostream>
-#include <vector>
-#include <list>
-#include <string>
-#include <cctype>
-#include <functional>
-
-using namespace std;
-
 /* Pembentukan Hash Table */
 int ukuranHashTable = 10;
 vector<list<pair<string, vector<string>>>> dataPelanggan(ukuranHashTable);
 
-/* Generate Key */
+/* Generate Key Versi 1 
 string generateKey() {
     string input = to_string(rand()); 
     hash<string> hash_fn;
     size_t hash = hash_fn(input);  
     return to_string(hash);  
+}
+*/
+
+/* Generate Key Versi 2 */
+string generateKey() {
+    static int counter = 1;
+    return "KEY" + to_string(counter++);
 }
 
 /* Hash Function */
@@ -45,6 +43,7 @@ void tambahDataPelanggan(string key, string namaPelanggan, string totalBayarPela
     vector<string> dataPelangganBaru = {namaPelanggan, totalBayarPelanggan};
     dataPelangganBaru.insert(dataPelangganBaru.end(), pesanan.begin(), pesanan.end());
     dataPelanggan[index].push_back({key, dataPelangganBaru});
+    cout<<"Data Dimasukkan Dengan Key: "<<key<<endl;
 }
 
 /* Function Hapus Data */
@@ -67,18 +66,15 @@ vector<string> cariDataPelanggan(string key) {
     int index = hashFunction(key);
     for (auto& item : dataPelanggan[index]) {
         if (item.first == key) {
-            cout << "Data Pelanggan Dengan key: '" << key << "' : ";
             vector<string> dataS;
             for (const auto& val : item.second) {
-                cout << val << " ";
                 dataS.push_back(val);
             }
             cout << endl;          
             return dataS; 
         }
     }
-
-    cout << "Data Dengan Key: '" << key << "' tidak ditemukan " << endl;
+    
     return {}; 
 }
 
