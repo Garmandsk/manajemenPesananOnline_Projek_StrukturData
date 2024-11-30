@@ -1,12 +1,3 @@
-#include <iostream>
-#include <vector>
-#include <list>
-#include <string>
-#include <cctype>
-#include <functional>
-
-using namespace std;
-
 /* Pembentukan Hash Table */
 int ukuranHashTable = 10;
 vector<list<pair<string, vector<string>>>> dataPelanggan(ukuranHashTable);

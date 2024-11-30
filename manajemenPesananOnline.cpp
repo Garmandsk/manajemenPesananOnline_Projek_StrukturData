@@ -1,56 +1,84 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <algorithm>
-#include "header.h"
-using namespace std;
+#include "function.cxx"
 
+// Fungsi utama
 int main() {
     system("cls");
-    // Inisialisasi daftar menu
-    vector<Menu> daftarMenu = {
-        {"Makanan", "Nasi Goreng", 10000},
-        {"Makanan", "Ikan Bakar", 20000},
-        {"Minuman", "Teh Manis", 5000},
-        {"Makanan", "Nasi Goreng", 10000},
-        {"Makanan", "Ikan Bakar", 20000},
-        {"Minuman", "Jus Buah", 5000}
-    };
-
-    int pilihan;
     
-    pesanSambutan();
-
-    do {
-        showMenu();
-        cin >> pilihan;
-
-        switch (pilihan) {
-            case 1:
-                showDaftarMenu(daftarMenu);
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case 9:
-                cout << "Terima kasih telah menggunakan sistem ini!\n";
-                break;
-            default:
-                cout << "\nPilihan tidak valid. Silakan coba lagi.\n";
-        }
-    } while (pilihan != 9);
-
+    int role;
+    
+    cout << "1. Pelanggan" << endl;
+    cout << "2. Pemilik" << endl;
+    cout << "Role Anda: "; cin >> role;
+    
+    if (role == 1){
+        system("cls");
+        string nama; 
+       
+        cout << "Masukkan Nama Anda: "; 
+        cin >> nama;
+        
+        system("cls");
+        
+        int pilihan;
+        
+        do {
+            showMenu();
+            cin >> pilihan;
+    
+            switch (pilihan) {
+                case 1:
+                    system("cls");
+                    showDaftarMenu(daftarMenu);
+                    cout << endl << "Enter Untuk Kembali";
+                    getchar(); getchar();
+                    break;
+                case 2:
+                    system("cls");
+                    sortMenu(daftarMenu);
+                    cout << endl << "Enter Untuk Kembali";
+                    getchar(); getchar();
+                    break;
+                case 3:
+                    system("cls");
+                    prosesPesanan(antrianPesanan);
+                    cout << endl << "Enter Untuk Kembali";
+                    getchar(); getchar();
+                    break;
+                case 4:
+                    system("cls");
+                    tambahPesanan(antrianPesanan, daftarMenu);
+                    cout << endl << "Enter Untuk Kembali";
+                    getchar(); getchar();
+                    break;
+                case 5:
+                    system("cls");
+                    prosesPesanan(antrianPesanan);
+                    cout << endl << "Enter Untuk Kembali";
+                    getchar(); getchar();
+                    break;
+                case 6:
+                    system("cls");
+                    showAntrian(antrianPesanan);
+                    cout << endl << "Enter Untuk Kembali";
+                    getchar(); getchar();
+                    break;
+                case 7:
+                 
+                     break;
+                 case 8:
+                  
+                     break;
+                 case 9:
+                    cout << endl << "Terima kasih telah menggunakan sistem ini!\n";
+                    break;
+                 default:
+                     system("cls");
+                    cout << "\nPilihan tidak valid. Silakan coba lagi.\n";
+            }
+        } while (pilihan != 9);
+    }else if(role == 2){
+        cout << "Halo Pemilik" << endl;
+    }
+    
     return 0;
-
 }

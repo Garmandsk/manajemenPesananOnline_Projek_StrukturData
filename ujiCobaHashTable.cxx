@@ -1,7 +1,4 @@
-#include <iostream>
-#include "hashTable.cxx"
-
-using namespace std;
+#include "function.cxx"
 
 int main (){
     
@@ -12,7 +9,7 @@ int main (){
     vector<string> pesanan2 = {"Bakso", "Mie Ayam", "Ayam Goreng", "Es Teh", "Jus Jeruk"};
 
     tambahDataPelanggan(key1, "Audi", "10000", pesanan1);
-    tambahDataPelanggan(key2, "Budi", "30000", pesanan1);
+    tambahDataPelanggan(key2, "Budi", "30000", pesanan2);
     
     tampilDataPelanggan();
     
