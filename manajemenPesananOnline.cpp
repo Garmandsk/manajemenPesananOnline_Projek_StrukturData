@@ -1,5 +1,5 @@
 #include "function.cxx"
-
+    
 // Fungsi utama
 int main() {
     int role;
@@ -8,7 +8,8 @@ int main() {
     system("cls");
     cout << "1. Pelanggan" << endl;
     cout << "2. Pemilik" << endl;
-    cout << "Role Anda: "; cin >> role;
+    cout<<"Tekan Sembarang Tombol Untuk Keluar"<<endl<<endl;
+    cout << "Role Anda(1-2): "; cin >> role;
     
     while(true){
         if (role == 1){
@@ -94,73 +95,89 @@ int main() {
                 }
             } while (pilihan != 9);
         }else if(role == 2){
-            int pilihan;
+            string kataSandi;
             
-            system("cls");
+            cout << "Kata Sandi: "; cin >> kataSandi;
             
-            do {
-                system("cls");
-                showMenuPemilik();
-                cin >> pilihan;
-        
-                switch (pilihan) {
-                    case 1: {
-                        system("cls");
-                        tampilDataPelanggan();
-                        cout << endl << "Enter Untuk Kembali";
-                        cin.ignore();
-                        cin.get();  
-                        break;
-                    }
-                    case 2: {
-                        system("cls");
-                        string pilihKeyDicari;
-                        cout << "Masukkan Data Yang Ingin Dicari Berdasarkan Key-nya: ";
-                        cin >> pilihKeyDicari;
+            if(kataSandi == "a"){
+                int pilihan;                
+                const int maxPelanggan = 100;
+                string daftarPelanggan[maxPelanggan];
                 
-                        vector<string> dataHasilPencarian = cariDataPelanggan(pilihKeyDicari);
-                        try {
-                            if (!dataHasilPencarian.empty()) {
-                                cout << "Data Ditemukan:\n";
-                                for (const auto& item : dataHasilPencarian) {
-                                    cout << item << " ";
-                                }
-                                cout << "\n";
-                            } else {
-                                throw runtime_error("Data tidak ditemukan.");
-                            }
-                        } catch (const runtime_error& e) {
-                            cout << "Error: " << e.what() << "\n";
+                vector<string> pesanan2 = {"Bakso", "Mie Ayam", "Ayam Goreng", "Es Teh", "Jus Jeruk"};
+    
+                tambahDataPelanggan(generateKey(), "Audi", "10000", pesanan2);
+                system("cls");
+                
+                do {
+                    system("cls");
+                    showMenuPemilik();
+                    cin >> pilihan;
+            
+                    switch (pilihan) {
+                        case 1: {
+                            system("cls");
+                            tampilDataPelanggan(daftarPelanggan);
+                            simpanDataPelanggan(daftarPelanggan, maxPelanggan);
+                            cout << endl << "Enter Untuk Kembali";
+                            cin.ignore();
+                            cin.get();  
+                            break;
                         }
-                        cout << endl << "Enter Untuk Kembali";
-                        cin.ignore();
-                        cin.get();
-                        break;
-                    }
-                    case 3: {
-                        system("cls");
-                        string pilihKeyDihapus;
-                        cout << "Masukkan Data Yang Ingin Dihapus Berdasarkan Key-nya: ";
-                        cin >> pilihKeyDihapus;
-                        hapusDataPelanggan(pilihKeyDihapus);
-                        cout << endl << "Enter Untuk Kembali";
-                        cin.ignore();
-                        cin.get();
-                        break;
-                    }
-                    case 4: {
-                        cout << "Kembali ke menu awal.\n";
-                        goto menuAwal;
-                        break;
-                    }
-                    default: {
-                        cout << "\nPilihan tidak valid. Silakan coba lagi.\n";
-                        cin.ignore();
-                        cin.get();
-                        break;
-                    }
-                }        
-            } while (pilihan != 4);
+                        case 2: {
+                            system("cls");
+                            string pilihKeyDicari;
+                            
+                            cout << "Masukkan Data Yang Ingin Dicari Berdasarkan Key-nya: ";
+                            cin >> pilihKeyDicari;
+                    
+                            vector<string> dataHasilPencarian = cariDataPelanggan(pilihKeyDicari);
+                            try {
+                                if (!dataHasilPencarian.empty()) {
+                                    cout << "Data Ditemukan:\n";
+                                    for (const auto& item : dataHasilPencarian) {
+                                        cout << item << " ";
+                                    }
+                                    cout << "\n";
+                                } else {
+                                    throw runtime_error("Data tidak ditemukan.");
+                                }
+                            } catch (const runtime_error& e) {
+                                cout << "Error: " << e.what() << "\n";
+                            }
+                            cout << endl << "Enter Untuk Kembali";
+                            cin.ignore();
+                            cin.get();
+                            break;
+                        }
+                        case 3: {
+                            system("cls");
+                            string pilihKeyDihapus;
+                            
+                            cout << "Masukkan Data Yang Ingin Dihapus Berdasarkan Key-nya: ";
+                            cin >> pilihKeyDihapus;
+                            hapusDataPelanggan(pilihKeyDihapus);
+                            cout << endl << "Enter Untuk Kembali";
+                            cin.ignore();
+                            cin.get();
+                            break;
+                        }
+                        case 4: {
+                            cout << "Kembali ke menu awal.\n";
+                            goto menuAwal;
+                            break;
+                        }
+                        default: {
+                            cout << "\nPilihan tidak valid. Silakan coba lagi.\n";
+                            cin.ignore();
+                            cin.get();
+                            break;
+                        }
+                    }        
+                } while (pilihan != 4);
+            }else{
+                goto menuAwal;
+            }
         }else{
             return false;
         }
