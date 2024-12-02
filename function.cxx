@@ -27,6 +27,10 @@ vector<Menu> daftarMenu = {
         {"Minuman", "Jus Buah", 5000}
 };
 
+bool isDataSaved = true;
+const int maxPelanggan = 100;
+string daftarPelanggan[maxPelanggan];
+
 void showDaftarMenu(const vector<Menu>& daftarMenu) {
     string pemisahKategori = "";
     
@@ -79,4 +83,21 @@ void showMenuPemilik() {
     cout << "4. Kembali Ke Menu Awal\n"; 
     cout << "====================================\n";
     cout << "Pilih opsi (1-4): ";
+}
+
+void keluarProgram() {
+    if (!isDataSaved) {
+        cout << "Anda belum menyimpan perubahan data pelanggan.\n";
+        cout << "Apakah Anda ingin menyimpan sekarang? (y/n): ";
+        char pilihan;
+        cin >> pilihan;
+        if (pilihan == 'y' || pilihan == 'Y') {
+            // Simpan data sebelum keluar
+            simpanDataPelanggan(daftarPelanggan, maxPelanggan);
+        } else {
+            cout << endl << "Perubahan data tidak disimpan. Keluar program...\n";
+        }
+    } else {
+        cout << endl << "Data sudah tersimpan. Keluar program...\n";
+    }
 }

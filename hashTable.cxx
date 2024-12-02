@@ -36,6 +36,7 @@ void tambahDataPelanggan(string key, string namaPelanggan, string totalBayarPela
             item.second.push_back(namaPelanggan);
             item.second.push_back(totalBayarPelanggan);
             item.second.insert(item.second.end(), pesanan.begin(), pesanan.end());
+            isDataSaved = false;
             return;
         }
     }
@@ -44,6 +45,7 @@ void tambahDataPelanggan(string key, string namaPelanggan, string totalBayarPela
     dataPelangganBaru.insert(dataPelangganBaru.end(), pesanan.begin(), pesanan.end());
     dataPelanggan[index].push_back({key, dataPelangganBaru});
     cout<<"Data Dimasukkan Dengan Key: "<<key<<endl;
+    isDataSaved = false;
 }
 
 /* Function Hapus Data */
@@ -55,6 +57,7 @@ void hapusDataPelanggan(string key) {
         if (it->first == key) {
             list_at_index.erase(it);
             cout << "Data Dengan Key: '" << key << "' Berhasil Dihapus" << endl;
+            isDataSaved = false;
             return;
         }
     }
@@ -161,6 +164,7 @@ void simpanDataPelanggan(const string daftarPelanggan[], int jumlahPelanggan) {
 
         file << "------------------------------------------\n";
         file.close();
+        bool isDataSaved = true;
         cout << "Data pelanggan telah disimpan ke 'daftarPelanggan.txt'.\n";
     } else {
         cout << "Penyimpanan daftar pelanggan Gagal.\n";
