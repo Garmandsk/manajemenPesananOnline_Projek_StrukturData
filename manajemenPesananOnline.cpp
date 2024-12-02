@@ -79,18 +79,18 @@ int main() {
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
                         cin.get();  
-                         break;
-                     case 8:
+                        break;
+                    case 8:
                         system("cls");
                         showRiwayatPesanan(riwayatPesanan);
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
                         cin.get();  
                         break;
-                     case 9:
+                    case 9:
                         goto menuAwal;
                         break;
-                     default:
+                    default:
                         system("cls");
                         cout << "\nPilihan tidak valid. Silakan coba lagi.\n";
                 }
