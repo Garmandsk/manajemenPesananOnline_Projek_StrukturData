@@ -79,11 +79,12 @@ vector<string> cariDataPelanggan(string key) {
 }
 
 /* Function Tampilkan Semua Data */
-void tampilDataPelanggan() {
+void tampilDataPelanggan(string daftarPelanggan[]) {
+    cout << "Hash Table:\n";
     for (int i = 0; i < ukuranHashTable; ++i) {
         cout << "Index " << i << ": ";
         if (dataPelanggan[i].empty()) {
-            cout << "Data Pelanggan Kosong" << endl;
+            cout << "Data Pelanggan Kosong\n";
         } else {
             for (const auto& item : dataPelanggan[i]) {
                 cout << "(" << item.first << ": [";
@@ -92,7 +93,76 @@ void tampilDataPelanggan() {
                 }
                 cout << "]) ";
             }
-            cout << endl;
+            cout << "\n";
         }
+    }
+
+    cout << "\nTampilan Tabel:\n";
+    cout << "----------------------------------------------------------------------------\n";
+    cout << "| Key        | Nama      | Total Bayar | Pesanan                           |\n";
+    cout << "----------------------------------------------------------------------------\n";
+
+    int idx = 0;
+    for (int i = 0; i < ukuranHashTable; ++i) {
+        for (const auto& item : dataPelanggan[i]) {
+            string key = item.first;
+            string nama = item.second[0];
+            string totalBayar = item.second[1];
+            string pesanan = "";
+
+            /* Menggabungkan Semua Pesanan */
+            for (size_t j = 2; j < item.second.size(); ++j) {
+                pesanan += item.second[j];
+                if (j < item.second.size() - 1) {
+                    pesanan += ", ";
+                }
+            }
+
+            cout << " | " << setw(10) << key 
+                     << " | " << setw(10) << nama 
+                     << " | " << setw(12) << totalBayar 
+                     << " | " << setw(30) << pesanan
+                     << " |\n";
+            
+            /* Simpan Data Kedalam Array daftarPelanggan */
+            daftarPelanggan[idx++] = key + ";" + nama + ";" + totalBayar + ";" + pesanan;
+        }
+    }
+
+    cout << "----------------------------------------------------------------------------\n";
+}
+
+/* Function Menyimpan Daftar Pelanggan Ke file daftarPelanggan.txt */
+void simpanDataPelanggan(const string daftarPelanggan[], int jumlahPelanggan) {
+    ofstream file("daftarPelanggan.txt");
+    if (file.is_open()) {
+       
+        file << "------------------------------------------\n";
+        file << "| Key        | Nama      | Total Bayar | Pesanan             |\n";
+        file << "------------------------------------------\n";
+
+        for (int i = 0; i < jumlahPelanggan; ++i) {
+            if (!daftarPelanggan[i].empty()) {
+                // Pisahkan data pelanggan berdasarkan delimiter ";"
+                stringstream ss(daftarPelanggan[i]);
+                string key, nama, totalBayar, pesanan;
+                getline(ss, key, ';');
+                getline(ss, nama, ';');
+                getline(ss, totalBayar, ';');
+                getline(ss, pesanan, ';');
+
+                file << "| " << setw(10) << key
+                     << " | " << setw(10) << nama
+                     << " | " << setw(12) << totalBayar
+                     << " | " << setw(20) << pesanan 
+                     << " |\n";
+            }
+        }
+
+        file << "------------------------------------------\n";
+        file.close();
+        cout << "Data pelanggan telah disimpan ke 'daftarPelanggan.txt'.\n";
+    } else {
+        cout << "Penyimpanan daftar pelanggan Gagal.\n";
     }
 }

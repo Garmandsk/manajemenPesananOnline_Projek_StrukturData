@@ -6,6 +6,9 @@
 #include <cctype>
 #include <functional>
 #include <queue>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
 using namespace std;
 
 struct Menu {
@@ -70,7 +73,7 @@ void showMenuPemilik() {
     cout << "====================================\n";
     cout << "  \"RUANG ADMIN\"\n";
     cout << "====================================\n";
-    cout << "1. Lihat Daftar Pelanggan\n"; 
+    cout << "1. Lihat dan Simpan Daftar Pelanggan\n"; 
     cout << "2. Cari Data Pelanggan\n";
     cout << "3. Hapus Data Pelanggan\n";
     cout << "4. Kembali Ke Menu Awal\n"; 
