@@ -8,7 +8,8 @@ int main() {
     system("cls");
     cout << "1. Pelanggan" << endl;
     cout << "2. Pemilik" << endl;
-    cout<<"Tekan Sembarang Tombol Untuk Keluar"<<endl<<endl;
+    cout << "3. Keluar Program" << endl << endl;
+    
     cout << "Role Anda(1-2): "; cin >> role;
     
     while(true){
@@ -101,8 +102,6 @@ int main() {
             
             if(kataSandi == "a"){
                 int pilihan;                
-                const int maxPelanggan = 100;
-                string daftarPelanggan[maxPelanggan];
                 
                 vector<string> pesanan2 = {"Bakso", "Mie Ayam", "Ayam Goreng", "Es Teh", "Jus Jeruk"};
     
@@ -178,8 +177,14 @@ int main() {
             }else{
                 goto menuAwal;
             }
+        }else if(role == 3){
+            keluarProgram();
+            cin.ignore();
+            cin.get();
+            return 0;
         }else{
-            return false;
+            cout << "Masukkan Ulang!" << endl;
+            goto menuAwal;
         }
     }
     
