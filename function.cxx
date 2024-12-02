@@ -87,15 +87,21 @@ void showMenuPemilik() {
 
 void keluarProgram() {
     if (!isDataSaved) {
-        cout << "Anda belum menyimpan perubahan data pelanggan.\n";
+        simpanData:
+        cout << endl << "Anda BELUM menyimpan perubahan data pelanggan.\n";
         cout << "Apakah Anda ingin menyimpan sekarang? (y/n): ";
-        char pilihan;
+        string pilihan;
         cin >> pilihan;
-        if (pilihan == 'y' || pilihan == 'Y') {
+        if (pilihan == "y" || pilihan == "Y") {
             // Simpan data sebelum keluar
             simpanDataPelanggan(daftarPelanggan, maxPelanggan);
-        } else {
+        } else if (pilihan == "n" || pilihan == "N"){
             cout << endl << "Perubahan data tidak disimpan. Keluar program...\n";
+        } else {
+            cout << endl << "Masukkan Ulang!" << endl << endl;     
+            cin.ignore();
+            cin.get();  
+            goto simpanData;
         }
     } else {
         cout << endl << "Data sudah tersimpan. Keluar program...\n";
