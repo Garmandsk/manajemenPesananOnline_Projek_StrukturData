@@ -74,8 +74,8 @@ void showMenuPelanggan() {
     cout << "4. Buat Pesanan\n";
     cout << "5. Proses Pesanan\n"; 
     cout << "6. Lihat Antrian Pesanan\n";
-    cout << "7. Hapus Pesanan (Belum) \n";
-    cout << "8. Lihat Riwayat Pesanan (Belum) \n";
+    cout << "7. Hapus Pesanan\n";
+    cout << "8. Lihat Riwayat Pesanan\n";
     cout << "9. Kembali Ke Menu Awal\n";
     cout << "====================================\n";
     cout << "Pilih opsi (1-9): ";

@@ -68,7 +68,7 @@ int main() {
                         break;
                     case 5:
                         system("cls");
-                        prosesPesanan(antrianPesanan);
+                        prosesPesanan(antrianPesanan, riwayatPesanan);
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
                         cin.get();  
@@ -81,24 +81,24 @@ int main() {
                         cin.get();  
                         break;
                     case 7:
-                         system("cls");
-                         /* Belum */
-                         cout << endl << "Enter Untuk Kembali";
+                        system("cls");
+                        hapusPesanan(antrianPesanan);
+                        cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
                         cin.get();  
-                         break;
-                     case 8:
-                          system("cls");
-                          /* Belum */
-                          cout << endl << "Enter Untuk Kembali";
+                        break;
+                    case 8:
+                        system("cls");
+                        showRiwayatPesanan(riwayatPesanan);
+                        cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
                         cin.get();  
-                         break;
-                     case 9:
+                        break;
+                    case 9:
                         goto menuAwal;
                         break;
-                     default:
-                         system("cls");
+                    default:
+                        system("cls");
                         cout << "\nPilihan tidak valid. Silakan coba lagi.\n";
                 }
             } while (pilihan != 9);
