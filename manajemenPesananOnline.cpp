@@ -33,34 +33,6 @@ int main() {
         
                 switch (pilihan) {
                     case 1:
-                        system("cls");
-                        showDaftarMenu(daftarMenu);
-                        cout << endl << "Enter Untuk Kembali";
-                        cin.ignore();
-                        cin.get(); 
-                        break;
-                    case 2:
-                        system("cls");
-                        int urutanPilihan;
-                        cout << "Pilih metode pengurutan:\n";
-                        cout << "1. Berdasarkan Abjad\n";
-                        cout << "2. Berdasarkan Harga\n";
-                        cout << "Pilih opsi (1-2): ";
-                        cin >> urutanPilihan;
-                        sortMenu(daftarMenu, urutanPilihan);
-                        cout << endl << "Enter Untuk Kembali";
-                        cin.ignore();
-                        cin.get();  
-                        break;
-                    case 3:
-                        system("cls");
-                        /* Belum */
-                        cout << endl << "Enter Untuk Kembali";
-                        cin.ignore();
-                        cin.get();  
-                        break;
-                    case 4:
-                        system("cls");
                         tambahPesanan(antrianPesanan, daftarMenu);
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();

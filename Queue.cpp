@@ -87,20 +87,79 @@ queue<Menu> antrianPesanan;
 
 RiwayatPesanan* riwayatPesanan = nullptr;
 
-void tambahPesanan(queue<Menu>& antrian, const vector<Menu>& daftarMenu) {
-    showDaftarMenu(daftarMenu);
-    
-    cout << "\nPilih nomor menu yang ingin ditambahkan ke antrian: ";
-    int pilihan;
-    cin >> pilihan;
+void tambahPesanan(queue<Menu>& antrian, vector<Menu> daftarMenu) {
+    string pilihan;
+    char pilihanPesanan;
+    int jumlahPesanan;
 
-    if (pilihan < 1 || pilihan > daftarMenu.size()) {
-        cout << "\nPilihan tidak valid.\n";
-        return;
-    }
+    do {
+        system("cls"); // Bersihkan layar (Windows)
+        showDaftarMenu(daftarMenu);
 
-    antrian.push(daftarMenu[pilihan - 1]);
-    cout << daftarMenu[pilihan - 1].nama << " telah ditambahkan ke antrian.\n";
+        cout << "Tekan 'h' untuk mengurutkan berdasarkan harga" << endl;
+        cout << "Tekan 'c' untuk mencari menu" << endl;
+        cout << "Tekan 'k' untuk keluar" << endl << endl;
+        
+        cout << "Catatan: Pilih Menu Sesuai ID!" << endl << endl;
+        
+        cout << "Masukkan pilihan: ";
+        cin >> pilihan;
+
+        // Perintah berdasarkan input
+        if (pilihan == "h" || pilihan == "H") {
+            sortMenu(daftarMenu);
+            continue; // Kembali ke awal loop untuk menampilkan daftar terurut
+        } else if (pilihan == "c" || pilihan == "C") {
+            cout << "Pencarian belum tersedia." << endl;
+            cin.ignore();
+            cin.get();
+            continue;
+        } else if (pilihan == "k" || pilihan == "K") {
+            return; // Keluar dari fungsi
+        } else {
+            // Konversi pilihan menjadi indeks
+            int indeksPilihan;
+            try {
+                indeksPilihan = stoi(pilihan);
+            } catch (invalid_argument& e) {
+                cout << "\nMasukkan tidak valid (harus angka)." << endl;
+                cin.ignore();
+                cin.get();
+                continue;
+            }
+
+            if (indeksPilihan < 0 || indeksPilihan >= daftarMenu.size()) {
+                cout << "\nMasukkan tidak valid (indeks di luar jangkauan)." << endl;
+                cin.ignore();
+                cin.get();
+                continue;
+            }
+
+            // Pesan jumlah
+            cout << "Jumlah yang ingin dipesan: ";
+            cin >> jumlahPesanan;
+
+            if (jumlahPesanan <= 0) {
+                cout << "\nJumlah harus lebih dari 0." << endl;
+                cin.ignore();
+                cin.get();
+                continue;
+            }
+
+            // Tambahkan ke antrian
+            for (int i = 0; i < jumlahPesanan; i++) {
+                antrian.push(daftarMenu[indeksPilihan]);
+            }
+
+            cout << jumlahPesanan << " " << daftarMenu[indeksPilihan].nama << " telah ditambahkan ke antrian.\n";
+            cout << "Pesan lagi (Y/T)? ";
+            cin >> pilihanPesanan;
+
+            if (pilihanPesanan == 't' || pilihanPesanan == 'T') {
+                return; // Keluar dari fungsi
+            }
+        }
+    } while (true);
 }
 
 void prosesPesanan(queue<Menu>& antrian, RiwayatPesanan*& riwayat) {

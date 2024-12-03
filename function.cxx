@@ -20,8 +20,6 @@ struct Menu {
 
 // Inisialisasi daftar menu
 vector<Menu> daftarMenu = {
-        {"Makanan", "Nasi Goreng", 10000},
-        {"Makanan", "Ikan Bakar", 20000},
         {"Minuman", "Teh Manis", 5000},
         {"Makanan", "Nasi Goreng", 10000},
         {"Makanan", "Ikan Bakar", 20000},
@@ -33,29 +31,35 @@ const int maxPelanggan = 100;
 string daftarPelanggan[maxPelanggan];
 
 void showDaftarMenu(const vector<Menu>& daftarMenu) {
-    map<string, vector<Menu>> daftarMenuTerurut;
-    for (const auto& menu : daftarMenu) {
-        daftarMenuTerurut[menu.kategori].push_back(menu);
+    map<string, vector<pair<int, Menu>>> daftarMenuTerurut;
+
+    for (size_t i = 0; i < daftarMenu.size(); ++i) {
+        daftarMenuTerurut[daftarMenu[i].kategori].emplace_back(i, daftarMenu[i]);
     }
+    int no = 1; 
     for (const auto& pair : daftarMenuTerurut) {
         cout << endl << "Kategori: " << pair.first << endl;
-        cout << "-----------------------------------------------" << endl;
+        cout << "----------------------------------------------------" << endl;
+        cout << "| No. | ID | Nama " << pair.first << "              |  Harga |" << endl;
+        cout << "----------------------------------------------------" << endl;
         
-        cout << "| No. | Nama "<< pair.first <<"              |  Harga |" << endl;
-        cout << "-----------------------------------------------" << endl;
-        int no = 1;
-        for (const auto& menu : pair.second) {
-            cout << "| " << setw(3) << left << no << " | " << setw(25) << left << menu.nama << " | " << setw(6) << right << menu.harga << " |" << endl;
+        for (const auto& item : pair.second) {
+            int indeksAsli = item.first;
+            const Menu& menu = item.second;
+            cout << "| " << setw(3) << left << no 
+                 << " | " << setw(6) << left << indeksAsli 
+                 << " | " << setw(25) << left << menu.nama 
+                 << " | " << setw(10) << right << menu.harga << " |" << endl;
             no++;
         }
-        cout << "-----------------------------------------------" << endl;
+        cout << "----------------------------------------------------" << endl;
     }
     cout << endl;
 }
 
+#include "sort.cpp"
 #include "hashTable.cxx"
 #include "Queue.cpp"
-#include "sort.cpp"
 
 // Fungsi untuk menampilkan menu utama
 void showMenuPelanggan() {
@@ -68,10 +72,7 @@ void showMenuPelanggan() {
     cout << "====================================\n";
     cout << "   SISTEM PEMESANAN MAKANAN ONLINE\n";
     cout << "====================================\n";
-    cout << "1. Lihat Daftar Menu\n"; 
-    cout << "2. Urutkan Menu\n"; 
-    cout << "3. Cari Menu atau Pesanan (Belum) \n";
-    cout << "4. Buat Pesanan\n";
+    cout << "1. Buat Pesanan\n";
     cout << "5. Proses Pesanan\n"; 
     cout << "6. Lihat Antrian Pesanan\n";
     cout << "7. Hapus Pesanan\n";
