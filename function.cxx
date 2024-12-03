@@ -9,6 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+#include <map> // Tambahkan untuk menggunakan map
 using namespace std;
 
 struct Menu {
@@ -32,17 +33,24 @@ const int maxPelanggan = 100;
 string daftarPelanggan[maxPelanggan];
 
 void showDaftarMenu(const vector<Menu>& daftarMenu) {
-    string pemisahKategori = "";
-    
-        for (const auto& menu : daftarMenu) {
-            /* Untuk Memisahkan Antar Kategori */
-            if(pemisahKategori.empty() || pemisahKategori != menu.kategori){
-                cout << endl << menu.kategori << endl;
-            }
-            cout << "  Nama: " << menu.nama << ", Harga: " << menu.harga << endl;
-            pemisahKategori = menu.kategori;        
+    map<string, vector<Menu>> daftarMenuTerurut;
+    for (const auto& menu : daftarMenu) {
+        daftarMenuTerurut[menu.kategori].push_back(menu);
+    }
+    for (const auto& pair : daftarMenuTerurut) {
+        cout << endl << "Kategori: " << pair.first << endl;
+        cout << "-----------------------------------------------" << endl;
+        
+        cout << "| No. | Nama "<< pair.first <<"              |  Harga |" << endl;
+        cout << "-----------------------------------------------" << endl;
+        int no = 1;
+        for (const auto& menu : pair.second) {
+            cout << "| " << setw(3) << left << no << " | " << setw(25) << left << menu.nama << " | " << setw(6) << right << menu.harga << " |" << endl;
+            no++;
         }
-        cout << endl;
+        cout << "-----------------------------------------------" << endl;
+    }
+    cout << endl;
 }
 
 #include "hashTable.cxx"
