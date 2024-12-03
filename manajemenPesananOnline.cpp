@@ -19,7 +19,8 @@ int main() {
             system("cls");
            
             cout << "Masukkan Nama Anda: "; 
-            cin >> nama;
+            cin.ignore(); 
+            getline(cin, nama); 
             
             system("cls");
             
@@ -36,7 +37,7 @@ int main() {
                         showDaftarMenu(daftarMenu);
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
-                        cin.get();  
+                        cin.get(); 
                         break;
                     case 2:
                         system("cls");
