@@ -17,6 +17,7 @@ struct Menu {
     string kategori;
     string nama;
     int harga;
+    int id;
 };
 
 struct RiwayatPesanan {
