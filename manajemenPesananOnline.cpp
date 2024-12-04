@@ -32,6 +32,7 @@ int main() {
         
                 switch (pilihan) {
                     case 1:
+                        sortMenu(daftarMenu, 1);
                         tambahPesanan(antrianPesanan, daftarMenu);
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
@@ -39,7 +40,7 @@ int main() {
                         break;
                     case 2:
                         system("cls");
-<<<<<<< HEAD
+// <<<<<<< HEAD
                         int urutanPilihan;
                         cout << "Pilih metode pengurutan:\n";
                         cout << "1. Berdasarkan Abjad\n";
@@ -47,9 +48,9 @@ int main() {
                         cout << "Pilih opsi (1-2): ";
                         cin >> urutanPilihan;
                         sortMenu(daftarMenu, urutanPilihan);
-=======
+// =======
                         showAntrian(antrianPesanan, riwayat);
->>>>>>> d0f59d1ba3b30230da7cc49873c78c0b2041748b
+// >>>>>>> d0f59d1ba3b30230da7cc49873c78c0b2041748b
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
                         cin.get();  

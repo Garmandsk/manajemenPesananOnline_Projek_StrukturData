@@ -10,13 +10,13 @@
 #include <sstream>
 #include <iomanip>
 #include <map> // Tambahkan untuk menggunakan map
-#include <map> // Tambahkan untuk menggunakan map
 using namespace std;
 
 struct Menu {
     string kategori;
     string nama;
     int harga;
+    int id; // Tambahkan atribut id
 };
 
 struct RiwayatPesanan {
@@ -25,10 +25,10 @@ struct RiwayatPesanan {
 };
 
 vector<Menu> daftarMenu = {
-        {"Minuman", "Teh Manis", 5000},
-        {"Makanan", "Nasi Goreng", 10000},
-        {"Makanan", "Ikan Bakar", 20000},
-        {"Minuman", "Jus Buah", 5000}
+        {"Minuman", "Teh Manis", 5000, 1}, // Tambahkan id untuk setiap menu
+        {"Makanan", "Nasi Goreng", 10000, 2},
+        {"Makanan", "Ikan Bakar", 20000, 3},
+        {"Minuman", "Jus Buah", 5000, 4}
 };
 
 bool isDataSaved = true;
@@ -45,17 +45,24 @@ string daftarPelanggan[maxPelanggan];
 vector<list<pair<string, vector<string>>>> dataPelanggan(ukuranHashTable);
 
 void showDaftarMenu(const vector<Menu>& daftarMenu) {
-    string pemisahKategori = "";
-    
-        for (const auto& menu : daftarMenu) {
-            /* Untuk Memisahkan Antar Kategori */
-            if(pemisahKategori.empty() || pemisahKategori != menu.kategori){
-                cout << endl << menu.kategori << endl;
-            }
-            cout << "  Nama: " << menu.nama << ", Harga: " << menu.harga << endl;
-            pemisahKategori = menu.kategori;        
+    map<string, vector<pair<int, Menu>>> daftarMenuTerurut;
+    for (int i = 0; i < daftarMenu.size(); i++) {
+        daftarMenuTerurut[daftarMenu[i].kategori].push_back({daftarMenu[i].id, daftarMenu[i]});
+    }
+    for (const auto& pair : daftarMenuTerurut) {
+        cout << endl << "Kategori: " << pair.first << endl;
+        cout << "-----------------------------------------------" << endl;
+        
+        cout << "| NO  | ID  | Nama "<< pair.first <<"              |  Harga |" << endl;
+        cout << "-----------------------------------------------" << endl;
+        int no = 1;
+        for (const auto& menu : pair.second) {
+            cout << "| " << setw(3) << left << no << " | " << setw(3) << left << menu.first << " | " << setw(25) << left << menu.second.nama << " | " << setw(6) << right << menu.second.harga << " |" << endl;
+            no++;
         }
-        cout << endl;
+        cout << "-----------------------------------------------" << endl;
+    }
+    cout << endl;
 }
 
 #include "sort.cpp"
