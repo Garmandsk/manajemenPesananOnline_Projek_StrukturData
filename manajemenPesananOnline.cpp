@@ -14,12 +14,12 @@ int main() {
     
     while(true){
         if (role == 1){
-            string nama; 
             
             system("cls");
            
             cout << "Masukkan Nama Anda: "; 
-            cin >> nama;
+            cin.ignore(); 
+            getline(cin, namaPelanggan); 
             
             system("cls");
             
@@ -32,14 +32,14 @@ int main() {
         
                 switch (pilihan) {
                     case 1:
-                        system("cls");
-                        showDaftarMenu(daftarMenu);
+                        tambahPesanan(antrianPesanan, daftarMenu);
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
                         cin.get();  
                         break;
                     case 2:
                         system("cls");
+<<<<<<< HEAD
                         int urutanPilihan;
                         cout << "Pilih metode pengurutan:\n";
                         cout << "1. Berdasarkan Abjad\n";
@@ -47,71 +47,36 @@ int main() {
                         cout << "Pilih opsi (1-2): ";
                         cin >> urutanPilihan;
                         sortMenu(daftarMenu, urutanPilihan);
+=======
+                        showAntrian(antrianPesanan, riwayat);
+>>>>>>> d0f59d1ba3b30230da7cc49873c78c0b2041748b
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
                         cin.get();  
                         break;
                     case 3:
                         system("cls");
-                        /* Belum */
+                        konfirmasiRiwayatPesanan(riwayat);
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
                         cin.get();  
                         break;
                     case 4:
-                        system("cls");
-                        tambahPesanan(antrianPesanan, daftarMenu);
-                        cout << endl << "Enter Untuk Kembali";
-                        cin.ignore();
-                        cin.get();  
-                        break;
-                    case 5:
-                        system("cls");
-                        prosesPesanan(antrianPesanan);
-                        cout << endl << "Enter Untuk Kembali";
-                        cin.ignore();
-                        cin.get();  
-                        break;
-                    case 6:
-                        system("cls");
-                        showAntrian(antrianPesanan);
-                        cout << endl << "Enter Untuk Kembali";
-                        cin.ignore();
-                        cin.get();  
-                        break;
-                    case 7:
-                         system("cls");
-                         /* Belum */
-                         cout << endl << "Enter Untuk Kembali";
-                        cin.ignore();
-                        cin.get();  
-                         break;
-                     case 8:
-                          system("cls");
-                          /* Belum */
-                          cout << endl << "Enter Untuk Kembali";
-                        cin.ignore();
-                        cin.get();  
-                         break;
-                     case 9:
                         goto menuAwal;
                         break;
-                     default:
-                         system("cls");
+                    default:
+                        system("cls");
                         cout << "\nPilihan tidak valid. Silakan coba lagi.\n";
                 }
-            } while (pilihan != 9);
+            } while (pilihan != 4);
         }else if(role == 2){
             string kataSandi;
             
             cout << "Kata Sandi: "; cin >> kataSandi;
             
-            if(kataSandi == "a"){
+            if(kataSandi == "lupaaku"){
                 int pilihan;                
                 
-                vector<string> pesanan2 = {"Bakso", "Mie Ayam", "Ayam Goreng", "Es Teh", "Jus Jeruk"};
-    
-                tambahDataPelanggan(generateKey(), "Audi", "10000", pesanan2);
                 system("cls");
                 
                 do {

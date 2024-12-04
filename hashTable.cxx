@@ -1,7 +1,3 @@
-/* Pembentukan Hash Table */
-int ukuranHashTable = 10;
-vector<list<pair<string, vector<string>>>> dataPelanggan(ukuranHashTable);
-
 /* Generate Key Versi 1 
 string generateKey() {
     string input = to_string(rand()); 
@@ -10,12 +6,6 @@ string generateKey() {
     return to_string(hash);  
 }
 */
-
-/* Generate Key Versi 2 */
-string generateKey() {
-    static int counter = 1;
-    return "KEY" + to_string(counter++);
-}
 
 /* Hash Function */
 int hashFunction(string key) {
