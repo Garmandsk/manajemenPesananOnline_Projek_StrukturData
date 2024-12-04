@@ -9,7 +9,8 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include <map> // Tambahkan untuk menggunakan map
+#include <map>
+#include <windows.h>
 using namespace std;
 
 struct Menu {
@@ -127,3 +128,15 @@ void keluarProgram() {
         cout << endl << "Data sudah tersimpan. Keluar program...\n";
     }
 }
+
+void headerHapusDataPelanggan(){
+    cout << "\n=========================================" << endl;
+    cout << "          Hapus Data Pelanggan           " << endl;
+    cout << "=========================================" << endl;
+}
+
+void headerCariDataPelanggan(){
+    cout << "\n=========================================" << endl;
+    cout << "          Cari Data Pelanggan            " << endl;
+    cout << "=========================================" << endl;
+} 

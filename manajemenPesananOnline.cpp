@@ -71,13 +71,14 @@ int main() {
                 
                 do {
                     system("cls");
+                    system("color 2");
                     showMenuPemilik();
                     cin >> pilihan;
             
                     switch (pilihan) {
                         case 1: {
                             system("cls");
-                            tampilDataPelanggan(daftarPelanggan);
+                            system("color 6"); tampilDataPelanggan(daftarPelanggan);
                             simpanDataPelanggan(daftarPelanggan, maxPelanggan);
                             cout << endl << "Enter Untuk Kembali";
                             cin.ignore();
@@ -86,8 +87,10 @@ int main() {
                         }
                         case 2: {
                             system("cls");
+                            system("color 3");
                             string pilihKeyDicari;
                             
+                            headerCariDataPelanggan();
                             cout << "Masukkan Data Yang Ingin Dicari Berdasarkan Key-nya: ";
                             cin >> pilihKeyDicari;
                     
@@ -112,8 +115,10 @@ int main() {
                         }
                         case 3: {
                             system("cls");
+                            system("color D");
                             string pilihKeyDihapus;
                             
+                            headerHapusDataPelanggan();
                             cout << "Masukkan Data Yang Ingin Dihapus Berdasarkan Key-nya: ";
                             cin >> pilihKeyDihapus;
                             hapusDataPelanggan(pilihKeyDihapus);
