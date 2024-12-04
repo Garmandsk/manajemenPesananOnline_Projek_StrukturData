@@ -32,6 +32,7 @@ int main() {
         
                 switch (pilihan) {
                     case 1:
+                        sortMenu(daftarMenu, 1);
                         tambahPesanan(antrianPesanan, daftarMenu);
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
@@ -39,6 +40,7 @@ int main() {
                         break;
                     case 2:
                         system("cls");
+
                         showAntrian(antrianPesanan, riwayat);
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
@@ -128,6 +130,10 @@ int main() {
                             break;
                         }
                         case 4: {
+                            tambahMenu();  // Panggil fungsi untuk menambah menu baru
+                            break;
+                        }
+                        case 5: {
                             cout << "Kembali ke menu awal.\n";
                             goto menuAwal;
                             break;
@@ -139,7 +145,7 @@ int main() {
                             break;
                         }
                     }        
-                } while (pilihan != 4);
+                } while (pilihan != 5);
             }else{
                 goto menuAwal;
             }

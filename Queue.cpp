@@ -1,4 +1,4 @@
-void tambahRiwayatPesanan(RiwayatPesanan*& riwayat, const Menu& menu) {
+ void tambahRiwayatPesanan(RiwayatPesanan*& riwayat, const Menu& menu) {
     RiwayatPesanan* baru = new RiwayatPesanan{menu, nullptr};
     if (!riwayat) {
         riwayat = baru;
@@ -78,10 +78,11 @@ void tambahPesanan(queue<Menu>& antrian, vector<Menu> daftarMenu) {
 
         // Perintah berdasarkan input
         if (pilihan == "h" || pilihan == "H") {
-            sortMenu(daftarMenu);
+            sortMenu(daftarMenu, 2);
             continue; // Kembali ke awal loop untuk menampilkan daftar terurut
         } else if (pilihan == "c" || pilihan == "C") {
-            cout << "Pencarian belum tersedia." << endl;
+            pencarianMenu(daftarMenu);
+            cout << endl << "Enter Untuk Kembali";
             cin.ignore();
             cin.get();
             continue;
@@ -99,7 +100,7 @@ void tambahPesanan(queue<Menu>& antrian, vector<Menu> daftarMenu) {
                 continue;
             }
 
-            if (indeksPilihan < 0 || indeksPilihan >= daftarMenu.size()) {
+            if (indeksPilihan < 0 || indeksPilihan > daftarMenu.size()) {
                 cout << "\nMasukkan tidak valid (indeks di luar jangkauan)." << endl;
                 cin.ignore();
                 cin.get();
@@ -118,11 +119,18 @@ void tambahPesanan(queue<Menu>& antrian, vector<Menu> daftarMenu) {
             }
 
             // Tambahkan ke antrian
+            Menu menuDipilih;
+            for (auto& menu : daftarMenu) {
+                if (menu.id == indeksPilihan) {
+                    menuDipilih = menu;
+                    break;
+                }
+            }
             for (int i = 0; i < jumlahPesanan; i++) {
-                antrian.push(daftarMenu[indeksPilihan]);
+                antrian.push(menuDipilih);
             }
             
-            cout << jumlahPesanan << " " << daftarMenu[indeksPilihan].nama << " telah ditambahkan ke antrian.\n";
+            cout << jumlahPesanan << " " << menuDipilih.nama << " telah ditambahkan ke antrian.\n";
             cout << "Pesan lagi (Y/T)? ";
             cin >> pilihanPesanan;
 
