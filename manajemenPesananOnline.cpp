@@ -14,13 +14,12 @@ int main() {
     
     while(true){
         if (role == 1){
-            string nama; 
             
             system("cls");
            
             cout << "Masukkan Nama Anda: "; 
             cin.ignore(); 
-            getline(cin, nama); 
+            getline(cin, namaPelanggan); 
             
             system("cls");
             
@@ -38,53 +37,36 @@ int main() {
                         cin.ignore();
                         cin.get();  
                         break;
-                    case 5:
+                    case 2:
                         system("cls");
-                        prosesPesanan(antrianPesanan, riwayatPesanan);
+                        showAntrian(antrianPesanan, riwayat);
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
                         cin.get();  
                         break;
-                    case 6:
+                    case 3:
                         system("cls");
-                        showAntrian(antrianPesanan);
+                        konfirmasiRiwayatPesanan(riwayat);
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
                         cin.get();  
                         break;
-                    case 7:
-                        system("cls");
-                        hapusPesanan(antrianPesanan);
-                        cout << endl << "Enter Untuk Kembali";
-                        cin.ignore();
-                        cin.get();  
-                        break;
-                    case 8:
-                        system("cls");
-                        showRiwayatPesanan(riwayatPesanan);
-                        cout << endl << "Enter Untuk Kembali";
-                        cin.ignore();
-                        cin.get();  
-                        break;
-                    case 9:
+                    case 4:
                         goto menuAwal;
                         break;
                     default:
                         system("cls");
                         cout << "\nPilihan tidak valid. Silakan coba lagi.\n";
                 }
-            } while (pilihan != 9);
+            } while (pilihan != 4);
         }else if(role == 2){
             string kataSandi;
             
             cout << "Kata Sandi: "; cin >> kataSandi;
             
-            if(kataSandi == "a"){
+            if(kataSandi == "lupaaku"){
                 int pilihan;                
                 
-                vector<string> pesanan2 = {"Bakso", "Mie Ayam", "Ayam Goreng", "Es Teh", "Jus Jeruk"};
-    
-                tambahDataPelanggan(generateKey(), "Audi", "10000", pesanan2);
                 system("cls");
                 
                 do {

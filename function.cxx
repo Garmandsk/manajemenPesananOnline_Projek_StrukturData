@@ -18,7 +18,11 @@ struct Menu {
     int harga;
 };
 
-// Inisialisasi daftar menu
+struct RiwayatPesanan {
+    Menu menu;
+    RiwayatPesanan* next;
+};
+
 vector<Menu> daftarMenu = {
         {"Minuman", "Teh Manis", 5000},
         {"Makanan", "Nasi Goreng", 10000},
@@ -27,8 +31,17 @@ vector<Menu> daftarMenu = {
 };
 
 bool isDataSaved = true;
+string namaPelanggan; 
+
+/* Variabel Global Queue dan Linked List */
+queue<Menu> antrianPesanan; 
+RiwayatPesanan* riwayat = nullptr;
+
+/* Variabel Global HashTable */
+int ukuranHashTable = 10;
 const int maxPelanggan = 100;
 string daftarPelanggan[maxPelanggan];
+vector<list<pair<string, vector<string>>>> dataPelanggan(ukuranHashTable);
 
 void showDaftarMenu(const vector<Menu>& daftarMenu) {
     map<string, vector<pair<int, Menu>>> daftarMenuTerurut;
@@ -73,11 +86,9 @@ void showMenuPelanggan() {
     cout << "   SISTEM PEMESANAN MAKANAN ONLINE\n";
     cout << "====================================\n";
     cout << "1. Buat Pesanan\n";
-    cout << "5. Proses Pesanan\n"; 
-    cout << "6. Lihat Antrian Pesanan\n";
-    cout << "7. Hapus Pesanan\n";
-    cout << "8. Lihat Riwayat Pesanan\n";
-    cout << "9. Kembali Ke Menu Awal\n";
+    cout << "2. Lihat Antrian Pesanan\n";
+    cout << "3. Lihat Riwayat Pesanan\n";
+    cout << "4. Kembali Ke Menu Awal\n";
     cout << "====================================\n";
     cout << "Pilih opsi (1-9): ";
 }
