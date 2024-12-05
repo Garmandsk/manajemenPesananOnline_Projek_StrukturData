@@ -9,15 +9,14 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include <map> 
-#include <windows.h> 
+#include <map> // Tambahkan untuk menggunakan map
 using namespace std;
 
 struct Menu {
     string kategori;
     string nama;
     int harga;
-    int id;
+    int id; // Tambahkan atribut id
 };
 
 struct RiwayatPesanan {
@@ -47,15 +46,12 @@ vector<list<pair<string, vector<string>>>> dataPelanggan(ukuranHashTable);
 
 void showDaftarMenu(const vector<Menu>& daftarMenu) {
     map<string, vector<pair<int, Menu>>> daftarMenuTerurut;
-
     for (int i = 0; i < daftarMenu.size(); i++) {
         daftarMenuTerurut[daftarMenu[i].kategori].push_back({daftarMenu[i].id, daftarMenu[i]});
-    int no = 1; 
+    }
     for (const auto& pair : daftarMenuTerurut) {
         cout << endl << "Kategori: " << pair.first << endl;
-        cout << "---------------------------------------------------------" << endl;
-        cout << "| No. | ID | Nama " << pair.first << "                     |  Harga |" << endl;
-        cout << "---------------------------------------------------------" << endl;
+        cout << "-----------------------------------------------" << endl;
         
         cout << "| NO  | ID  | Nama "<< pair.first <<"              |  Harga |" << endl;
         cout << "-----------------------------------------------" << endl;
@@ -64,7 +60,7 @@ void showDaftarMenu(const vector<Menu>& daftarMenu) {
             cout << "| " << setw(3) << left << no << " | " << setw(3) << left << menu.first << " | " << setw(25) << left << menu.second.nama << " | " << setw(6) << right << menu.second.harga << " |" << endl;
             no++;
         }
-        cout << "---------------------------------------------------------" << endl;
+        cout << "-----------------------------------------------" << endl;
     }
     cout << endl;
 }
@@ -72,26 +68,6 @@ void showDaftarMenu(const vector<Menu>& daftarMenu) {
 #include "sort.cpp"
 #include "hashTable.cxx"
 #include "Queue.cpp"
-
-// Fungsi untuk menambahkan menu baru
-void tambahMenu() {
-    string namaMenu, kategoriMenu;
-    int hargaMenu;
-
-    cout << "Masukkan Nama Menu: ";
-    cin.ignore(); 
-    getline(cin, namaMenu);
-    
-    cout << "Masukkan Kategori Menu (Makanan/Minuman/Snack): ";
-    getline(cin, kategoriMenu);
-    
-    cout << "Masukkan Harga Menu: ";
-    cin >> hargaMenu;
-
-    // Menambahkan menu baru ke daftarMenu
-    daftarMenu.push_back({kategoriMenu, namaMenu, hargaMenu});
-    cout << "Menu " << namaMenu << " berhasil ditambahkan!\n";
-}
 
 // Fungsi untuk menampilkan menu utama
 void showMenuPelanggan() {
@@ -119,23 +95,23 @@ void showMenuPemilik() {
     cout << "1. Lihat dan Simpan Daftar Pelanggan\n"; 
     cout << "2. Cari Data Pelanggan\n";
     cout << "3. Hapus Data Pelanggan\n";
-    cout << "4. Masukkan Menu Baru\n";
+    cout << "4. Tambah Menu\n";
     cout << "5. Kembali Ke Menu Awal\n"; 
     cout << "====================================\n";
-    cout << "Pilih opsi (1-6): ";
+    cout << "Pilih opsi (1-5): ";
 }
 
 void keluarProgram() {
     if (!isDataSaved) {
         simpanData:
         cout << endl << "Anda BELUM menyimpan perubahan data pelanggan.\n";
-        cout << "Apakah Anda ingin menyimpan sekarang? (Y/T): ";
+        cout << "Apakah Anda ingin menyimpan sekarang? (y/n): ";
         string pilihan;
         cin >> pilihan;
         if (pilihan == "y" || pilihan == "Y") {
             // Simpan data sebelum keluar
             simpanDataPelanggan(daftarPelanggan, maxPelanggan);
-        } else if (pilihan == "t" || pilihan == "T"){
+        } else if (pilihan == "n" || pilihan == "N"){
             cout << endl << "Perubahan data tidak disimpan. Keluar program...\n";
         } else {
             cout << endl << "Masukkan Ulang!" << endl << endl;     
@@ -146,4 +122,36 @@ void keluarProgram() {
     } else {
         cout << endl << "Data sudah tersimpan. Keluar program...\n";
     }
+}
+
+// Fungsi untuk menambahkan menu baru
+void tambahMenu() {
+    string namaMenu, kategoriMenu;
+    int hargaMenu;
+
+    cout << "Masukkan Nama Menu: ";
+    cin.ignore(); 
+    getline(cin, namaMenu);
+    
+    cout << "Masukkan Kategori Menu (Makanan/Minuman/Snack): ";
+    getline(cin, kategoriMenu);
+    
+    cout << "Masukkan Harga Menu: ";
+    cin >> hargaMenu;
+
+    // Menambahkan menu baru ke daftarMenu
+    daftarMenu.push_back({kategoriMenu, namaMenu, hargaMenu});
+    cout << "Menu " << namaMenu << " berhasil ditambahkan!\n";
+}
+
+void headerCariDataPelanggan(){
+    cout << "\n=========================================" << endl;
+    cout << "          Cari Data Pelanggan            " << endl;
+    cout << "=========================================" << endl;
+}
+
+void headerHapusDataPelanggan(){
+    cout << "\n=========================================" << endl;
+    cout << "          Hapus Data Pelanggan           " << endl;
+    cout << "=========================================" << endl;
 }

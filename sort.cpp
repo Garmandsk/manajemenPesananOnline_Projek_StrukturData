@@ -1,3 +1,5 @@
+// #include "Queue.cpp"
+
 void sortMenu(vector<Menu>& daftarMenu, int urutanPilihan) {
     if (urutanPilihan == 1) {
         // Urutkan berdasarkan abjad
@@ -30,7 +32,13 @@ void searchMenu(const vector<Menu>& daftarMenu, string nama, int id, string harg
             cout << "Menu dengan nama '" << nama << "' tidak ditemukan.\n";
         }
     } else if (id >= 0 && id < daftarMenu.size()) {
-        vector<Menu> daftarMenuTersaring = {daftarMenu[id]};
+        vector<Menu> daftarMenuTersaring;
+        for (const auto& menu : daftarMenu) {
+            if (menu.id == id) {
+                daftarMenuTersaring.push_back(menu);
+                break; // Hanya mengambil menu dengan id yang cocok dan berhenti mencari
+            }
+        }
         showDaftarMenu(daftarMenuTersaring);
 
     } else {
@@ -63,7 +71,7 @@ void pencarianMenu(const vector<Menu>& daftarMenu) {
     cout << "Pilih metode pencarian:\n";
     cout << "1. Berdasarkan nama/id\n";
     cout << "2. Berdasarkan harga\n";
-    cout << "Pilih opsi (1-3): ";
+    cout << "Pilih opsi (1-2): ";
     cin >> pilihan;
 
     if (pilihan == 1) {

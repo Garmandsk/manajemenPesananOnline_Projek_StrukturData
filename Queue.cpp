@@ -18,12 +18,13 @@ string generateKey() {
 }
 
 void konfirmasiRiwayatPesanan(RiwayatPesanan*& riwayat) {
+    
+    cout << "=== Konfirmasi Riwayat Pesanan ===\n";
     if (!riwayat) {
         cout << "\nRiwayat pesanan kosong.\n";
         return;
     }
 
-    cout << "\n=== Konfirmasi Riwayat Pesanan ===\n";
     vector<string> daftarPesanan;
     int totalBayar = 0;
 
@@ -37,7 +38,7 @@ void konfirmasiRiwayatPesanan(RiwayatPesanan*& riwayat) {
     }
 
     cout << "\nTotal Bayar: Rp" << totalBayar << endl;
-    cout << "Apakah Anda ingin mengonfirmasi dan menyimpan data pelanggan? (y/n): ";
+    cout << "Apakah Anda ingin mengonfirmasi dan menyimpan data pelanggan? (Y/T): ";
     char konfirmasi;
     cin >> konfirmasi;
 
@@ -53,8 +54,12 @@ void konfirmasiRiwayatPesanan(RiwayatPesanan*& riwayat) {
             delete temp;
         }
         cout << "Data pelanggan berhasil disimpan ke dalam daftar pelanggan.\n";
-    } else {
+    } else if(tolower(konfirmasi) == 't'){
         cout << "\nData riwayat pesanan tidak disimpan.\n";
+    } else {
+        cout << "Masukkan Tidak Valid!" << endl;
+        cin.ignore();
+        cin.get();
     }
 }
 

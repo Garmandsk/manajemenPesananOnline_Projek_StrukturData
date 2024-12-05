@@ -6,21 +6,28 @@ int main() {
     
     menuAwal:
     system("cls");
+    system("color 6");
     cout << "1. Pelanggan" << endl;
     cout << "2. Pemilik" << endl;
     cout << "3. Keluar Program" << endl << endl;
     
-    cout << "Role Anda(1-2): "; cin >> role;
+    cout << "Anda masuk sebagai (1-2): "; cin >> role;
     
     while(true){
         if (role == 1){
             
+            ulangNamaPelanggan:
             system("cls");
-           
+            system("color 3");       
             cout << "Masukkan Nama Anda: "; 
             cin.ignore(); 
             getline(cin, namaPelanggan); 
             
+            if(namaPelanggan.empty()){
+                cout << "Nama Pelanggan Tidak Boleh Kosong!" << endl;            
+                cin.get();
+                goto ulangNamaPelanggan;
+            }
             system("cls");
             
             int pilihan;
@@ -131,6 +138,8 @@ int main() {
                         }
                         case 4: {
                             tambahMenu();  // Panggil fungsi untuk menambah menu baru
+                            cin.ignore();
+                            cin.get();
                             break;
                         }
                         case 5: {

@@ -1,6 +1,4 @@
 ------------------------------------------
 | Key        | Nama      | Total Bayar | Pesanan             |
 ------------------------------------------
-|       KEY1 |       halo |        80000 | Ikan Bakar - Rp20000, Ikan Bakar - Rp20000, Ikan Bakar - Rp20000, Ikan Bakar - Rp20000 |
-|       KEY2 |       yoyo |        30000 | Jus Buah - Rp5000, Jus Buah - Rp5000, Jus Buah - Rp5000, Jus Buah - Rp5000, Jus Buah - Rp5000, Jus Buah - Rp5000 |
 ------------------------------------------
