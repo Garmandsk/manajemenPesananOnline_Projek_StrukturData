@@ -6,21 +6,28 @@ int main() {
     
     menuAwal:
     system("cls");
+    system("color 6");
     cout << "1. Pelanggan" << endl;
     cout << "2. Pemilik" << endl;
     cout << "3. Keluar Program" << endl << endl;
     
-    cout << "Role Anda(1-2): "; cin >> role;
+    cout << "Anda masuk sebagai (1-2): "; cin >> role;
     
     while(true){
         if (role == 1){
             
+            ulangNamaPelanggan:
             system("cls");
-           
+            system("color 3");       
             cout << "Masukkan Nama Anda: "; 
             cin.ignore(); 
             getline(cin, namaPelanggan); 
             
+            if(namaPelanggan.empty()){
+                cout << "Nama Pelanggan Tidak Boleh Kosong!" << endl;            
+                cin.get();
+                goto ulangNamaPelanggan;
+            }
             system("cls");
             
             int pilihan;
@@ -32,6 +39,7 @@ int main() {
         
                 switch (pilihan) {
                     case 1:
+                        sortMenu(daftarMenu, 1);
                         tambahPesanan(antrianPesanan, daftarMenu);
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
@@ -39,6 +47,7 @@ int main() {
                         break;
                     case 2:
                         system("cls");
+
                         showAntrian(antrianPesanan, riwayat);
                         cout << endl << "Enter Untuk Kembali";
                         cin.ignore();
@@ -71,13 +80,14 @@ int main() {
                 
                 do {
                     system("cls");
+                    system("color 2");
                     showMenuPemilik();
                     cin >> pilihan;
             
                     switch (pilihan) {
                         case 1: {
                             system("cls");
-                            tampilDataPelanggan(daftarPelanggan);
+                            system("color 6"); tampilDataPelanggan(daftarPelanggan);
                             simpanDataPelanggan(daftarPelanggan, maxPelanggan);
                             cout << endl << "Enter Untuk Kembali";
                             cin.ignore();
@@ -86,8 +96,10 @@ int main() {
                         }
                         case 2: {
                             system("cls");
+                            system("color 3");
                             string pilihKeyDicari;
                             
+                            headerCariDataPelanggan();
                             cout << "Masukkan Data Yang Ingin Dicari Berdasarkan Key-nya: ";
                             cin >> pilihKeyDicari;
                     
@@ -112,8 +124,10 @@ int main() {
                         }
                         case 3: {
                             system("cls");
+                            system("color D");
                             string pilihKeyDihapus;
                             
+                            headerHapusDataPelanggan();
                             cout << "Masukkan Data Yang Ingin Dihapus Berdasarkan Key-nya: ";
                             cin >> pilihKeyDihapus;
                             hapusDataPelanggan(pilihKeyDihapus);
@@ -123,6 +137,12 @@ int main() {
                             break;
                         }
                         case 4: {
+                            tambahMenu();  // Panggil fungsi untuk menambah menu baru
+                            cin.ignore();
+                            cin.get();
+                            break;
+                        }
+                        case 5: {
                             cout << "Kembali ke menu awal.\n";
                             goto menuAwal;
                             break;
@@ -134,7 +154,7 @@ int main() {
                             break;
                         }
                     }        
-                } while (pilihan != 4);
+                } while (pilihan != 5);
             }else{
                 goto menuAwal;
             }

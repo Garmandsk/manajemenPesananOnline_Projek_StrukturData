@@ -46,29 +46,43 @@ void hapusDataPelanggan(string key) {
     for (auto it = list_at_index.begin(); it != list_at_index.end(); ++it) {
         if (it->first == key) {
             list_at_index.erase(it);
-            cout << "Data Dengan Key: '" << key << "' Berhasil Dihapus" << endl;
+            cout << "\n✅ Data dengan Key: '" << key << "' berhasil dihapus." << endl;
+            cout << "=========================================" << endl;
             isDataSaved = false;
             return;
         }
     }
-    cout << "Data Tidak Ditemukan" << endl;
+
+    cout << "\n❌ Data dengan Key: '" << key << "' tidak ditemukan." << endl;
+    cout << "=========================================" << endl;
 }
 
 /* Function Cari Data */
 vector<string> cariDataPelanggan(string key) {
     int index = hashFunction(key);
+
     for (auto& item : dataPelanggan[index]) {
         if (item.first == key) {
             vector<string> dataS;
+            cout << "\n✅ Data dengan Key: '" << key << "' ditemukan!" << endl;
+            cout << "-----------------------------------------" << endl;
+
+            int nomor = 1;
             for (const auto& val : item.second) {
+                cout << " " << nomor++ << ". " << val << endl;
                 dataS.push_back(val);
             }
-            cout << endl;          
-            return dataS; 
+
+            cout << "-----------------------------------------" << endl;
+            cout << "=========================================\n" << endl;
+            return dataS;
         }
     }
-    
-    return {}; 
+
+    cout << "\n❌ Data dengan Key: '" << key << "' tidak ditemukan." << endl;
+    cout << "=========================================\n" << endl;
+
+    return {};
 }
 
 /* Function Tampilkan Semua Data */
